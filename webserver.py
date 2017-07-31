@@ -46,7 +46,8 @@ class webServerHandler(BaseHTTPRequestHandler):
                     output += "</h2>"
                     output += "<a href='/restaurant/id/edit' name = " + str(a) + ">edit</a>"
                     output += "  "
-                    output += "<a href='/restaurant/delete?var=" + str(a) + "'>delete</a>"
+                    # output += "<a href='/restaurant/delete?var=" + str(a) + "'>delete</a>"
+                    output += "<a href='/restaurant/delete?query_name=" + str(a) + "'>delete</a>"
                 self.wfile.write(output)
                 print output
                 return
@@ -83,15 +84,16 @@ class webServerHandler(BaseHTTPRequestHandler):
                 print output
                 return
 
-            if self.path.endswith("/restaurant/delete"):
+            if self.path.endswith("/delete"):
                 self.send_response(200)
                 self.send_header('Content-type', 'text/html')
                 self.end_headers()
-                $var = $_GET['var']
+                # $var = $_GET['var']
+                # query = request.GET.get('query_name')
                 output = ""
                 output += "<html><body>"
                 output += "<h1>Are you sure you want to delete this restaurant?</h1>"
-                output += "<h2>" + $var + "</h2>"
+                # output += "<h2>" + query + "</h2>"
                 output += '''<form method='POST' enctype='multipart/form-data'
                 action='/restaurant'>
                 old name <input name="old_name" type="text">
